@@ -4,25 +4,20 @@
   import { Input } from "$lib/components/ui/input"
 
   let steamid: string = ""
-  let saved_data
 
   export let data: {
-    updated_at: number,
-    timing: number,
-    data: {
+    losers: {
       attributes: ["cheater", "suspicious"]
       last_seen: { player_name: string, time: number }
       proof?: ["associate", "defender"]
       steamid: string
     }[]
   }
-
-  saved_data = data
 </script>
 
 <div class="grid grid-cols-1 justify-items-center mb-6 mt-3">
   <p>solo's loser list web representation</p>
-  <p class="text-center font-['Noto Sans Mono'] mb-6">{data.data.length} players found</p>
+  <p class="text-center font-['Noto Sans Mono'] mb-6">{data.losers.length} players found</p>
 
   <Input type="text" placeholder="Filter by SteamID3" class="mt-3 max-w-64" bind:value={steamid} />
 </div>
@@ -38,7 +33,7 @@
     </Table.Header>
 
     <Table.Body>
-      {#each saved_data.data.filter((p) => p.steamid.includes(steamid)) as player}
+      {#each data.losers.filter((p) => p.steamid.includes(steamid)) as player}
         <Table.Row>
           <Table.Cell>
             <a href={`https://steamid.io/lookup/${player.steamid}`} class="hover:text-blue-400 transition-colors">

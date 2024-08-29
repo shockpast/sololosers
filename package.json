@@ -26,6 +26,7 @@
 	"dependencies": {
 		"clsx": "^2.1.1",
 		"lucide-svelte": "^0.436.0",
+		"soemth": "file:",
 		"tailwind-merge": "^2.5.2",
 		"tailwind-variants": "^0.2.1"
 	}
