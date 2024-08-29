@@ -47,6 +47,7 @@ jobs:
       id-token: write
 
     environment:
+      # that errors for some reason
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 

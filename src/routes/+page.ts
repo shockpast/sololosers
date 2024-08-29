@@ -8,9 +8,6 @@ type Losers = {
   }[]
 }
 
-export const prerender = false;
-export const ssr = false;
-
 let losers = { data: {} as Losers }
 
 export const load: PageLoad = async ({ fetch }) => {

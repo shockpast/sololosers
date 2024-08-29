@@ -19,7 +19,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.argv.includes("dev") ? "" : "shockpast.github.io/sololosers"
+			base: process.argv.includes("dev") ? "" : "/sololosers"
 		}
 	}
 };
