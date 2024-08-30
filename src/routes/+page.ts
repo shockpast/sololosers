@@ -6,7 +6,6 @@ type Losers = {
   steamid: string
 }[]
 
-
 let losers = [] as Losers
 
 export const load: PageLoad = async ({ fetch }) => {
@@ -14,5 +13,5 @@ export const load: PageLoad = async ({ fetch }) => {
   const json = await response.json()
   losers = json.players
 
-  return {losers}
+  return { losers }
 };

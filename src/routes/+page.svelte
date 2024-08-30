@@ -3,26 +3,21 @@
   import { Badge } from "$lib/components/ui/badge"
   import { Input } from "$lib/components/ui/input"
 
-  let steamid: string = ""
+  import type { PageData } from "./$types"
 
-  export let data: {
-    losers: {
-      attributes: ["cheater", "suspicious"]
-      last_seen: { player_name: string, time: number }
-      proof?: ["associate", "defender"]
-      steamid: string
-    }[]
-  }
+  let filter: string = ""
+
+  export let data: PageData;
 </script>
 
 <div class="grid grid-cols-1 justify-items-center mb-6 mt-3">
-  <p>solo's loser list web representation</p>
+  <p><a href="https://steamcommunity.com/id/0e-" class="text-blue-400 hover:text-blue-300 transition-colors duration-50">solo's</a> loser list web representation</p>
   <p class="text-center font-['Noto Sans Mono'] mb-6">{data.losers.length} players found</p>
 
-  <Input type="text" placeholder="Filter by SteamID3" class="mt-3 max-w-64" bind:value={steamid} />
+  <Input type="text" placeholder="Search by Name or SteamID3" class="mt-3 max-w-64" bind:value={filter} />
 </div>
 
-<div class="absolute left-1/4 right-1/4 w-6/12 border-4 rounded-md">
+<div class="w-[50%] ml-[25%] mr-[25%] border-4 rounded-md">
   <Table.Root>
     <Table.Header>
       <Table.Row>
@@ -33,7 +28,7 @@
     </Table.Header>
 
     <Table.Body>
-      {#each data.losers.filter((p) => p.steamid.includes(steamid)) as player}
+      {#each data.losers.filter((p) => p.steamid.includes(filter) || p.last_seen.player_name.includes(filter)) as player}
         <Table.Row>
           <Table.Cell>
             <a href={`https://steamid.io/lookup/${player.steamid}`} class="hover:text-blue-400 transition-colors">
@@ -58,3 +53,9 @@
     </Table.Body>
   </Table.Root>
 </div>
+
+<style lang="postcss">
+  :global(body) {
+    margin-bottom: 40px;
+  }
+</style>
